@@ -8,16 +8,17 @@ An object is a collection of data and associated behaviors.
 ## what does it mean to be object-oriented?
 
 ```
-Oriented simply means directed toward. So object-oriented simply means, "functionally
-directed toward modeling objects".
+Oriented simply means directed toward. So object-oriented simply means, 
+"functionally directed toward modeling objects".
 ```
 ## Object-oriented Analysis (OOA)
 
 ```
-It is the process of looking at a problem, system, or task that somebody wants to turn into an application and identifying the objects and interactions between those objects.
-
-Visitors to the website need to be able to (italic represents actions, bold
-represents objects):
+It is the process of looking at a problem, system, or 
+task that somebody wants to turn into an application 
+and identifying the objects and interactions between those objects.
+Visitors to the website need to be able to (italic represents actions,
+boldrepresents objects):
     • review our history
     • apply for jobs
     • browse, compare, and order our products
@@ -27,7 +28,8 @@ represents objects):
 ```
 The design stage is all about how things should be done.
 
-It is the process of converting such requirements into an implementation specification. The designer must name the objects, define the
+It is the process of converting such requirements into an implementation specification.
+ The designer must name the objects, define the
 behaviors, and formally specify what objects can activate specific behaviors on
 other objects.
 ```
@@ -116,12 +118,14 @@ Add reset behavior into the class.So that the origin can be (0,0)
 ```
 
 ```
-1. The one difference between methods and normal functions is that all methods have one required argument. 
+1. The one difference between methods and normal functions is that all methods
+   have one required argument. 
 2. This argument is conventionally named self.
-3. The self argument to a method is simply a reference to the object that the method is being invoked on.
+3. The self argument to a method is simply a reference to the object that the method 
+   is being invoked on.
 2. Notice that when we call the p.reset() method, we do not have to pass the self
-argument into it. Python automatically takes care of this for us. It knows we're
-calling a method on the p object, so it automatically passes that object to the method.
+   argument into it. Python automatically takes care of this for us. It knows we're
+   calling a method on the p object, so it automatically passes that object to the method.
 ```
 ## Add another arguments into function
 
@@ -326,8 +330,9 @@ calling a method on the p object, so it automatically passes that object to the 
 1.every class we create uses inheritance.
 2.All Python classes are subclasses of the special class named object .
 3.This class provides very little in terms of data and 
-behaviors (those behaviors it does provide are all double-underscore methods intended for internal use only)
-4.A superclass, or parent class, is a class that is being inherited from. A subclass is a class that is inheriting from a superclass.
+  behaviors (those behaviors it does provide are all double-underscore methods intended for internal use only)
+4.A superclass, or parent class, is a class that is being inherited from.
+5.A subclass is a class that is inheriting from a superclass.
 ```
 ```
     class Contact:
@@ -348,7 +353,32 @@ Some Body somebody@example.net Sup Plier supplier@example.net
 ```
 
 ```
+class ContactList(list):
+    def search(self, name):
+    '''Return all contacts that contain the search value
+    in their name.'''
+        matching_contacts = []
+        for contact in self:
+            if name in contact.name:
+                matching_contacts.append(contact)
+        return matching_contacts
+class Contact:
+    all_contacts = ContactList()
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.all_contacts.append(self)
 
+Instead of instantiating a normal list as our class variable, we create a new
+ContactList class that extends the built-in list . Then we instantiate this subclass
+as our all_contacts list. We can test the new search functionality as follows:
+
+>>> c1 = Contact("John A", "johna@example.net")
+>>> c2 = Contact("John B", "johnb@example.net")
+>>> c3 = Contact("Jenna C", "jennac@example.net")
+>>> [c.name for c in Contact.all_contacts.search('John')]
+['John A', 'John B']
+```
 
 
 

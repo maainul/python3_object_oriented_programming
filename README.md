@@ -427,3 +427,46 @@ The simplest and most useful form of multiple inheritance is called a mixin.
 A mixinis generally a superclass that is not meant to exist on its own,
 but is meant to be inherited by some other class to provide extra functionality.
 ```
+```
+  class AddressHolder:
+    def __init__(self,street,city,state,code):
+      self.street = street
+      self.city = city
+      self.state=state
+      self.code = code
+```
+# The Diamond Problem
+
+```
+  class Friend(Contact,AddressHolder):
+    def __init__(self,name,email,phone,street,city,state,code):
+      Contact.__init__(self,name,email)
+      AddressHolder.__init__(self,street,city,state,code)
+      self.phone = phone
+      
+```
+# Convert Into superclass
+
+```
+  class Contact:
+      all_contacts = []
+
+      def __init__(self,name='',email='',**kwargs):
+          super().__init__(**kwargs)
+          self.name = email
+          self.email = email
+          self.all_contacts.append(self)
+
+  class AddressHolder:
+      def __init__(self,street='',city='',state='',code='',**kwargs):
+          super().__init__(**kwargs)
+          self.street = street
+          self.city = city
+          self.state = state
+          self.code = code
+
+  class Friend(Contact,AddressHolder):
+      def __init__(self,phone='',**kwargs):
+          super().__init__(**kwargs)
+          self.phone = phone
+  ```

@@ -379,8 +379,43 @@ as our all_contacts list. We can test the new search functionality as follows:
 >>> [c.name for c in Contact.all_contacts.search('John')]
 ['John A', 'John B']
 ```
+## Overriding and Super
 
+``
+Overriding is altering or replacing a method of the superclass 
+with a new method (with the same name) in the subclass.
+```
+Let's create a class called Friend and override methods.
+```
+	class Friend(Contact):
+		def __init__(self,name,email,phone):
+			self.name = name
+			self.email = email
+			self.phone = phone
 
+	class Contact:
+	    all_contacts = ContactList()
+	    def __init__(self, name, email):
+		self.name = name
+		self.email = email
+		self.all_contacts.append(self)
+```
 
+```
+Our Contact and Friendclasses have duplicate code to set up
+the name and email properties; this can make maintenance complicated,
+as we have to update the code in two or more places.
+More alarmingly, our Friend class is neglect
+```
+
+```
+class Friend(Contact):
+	def __init__(self,name,email,phone):
+		super().__init__(name,email)
+		self.phone = phone
+```
+```
+A super() call can be made inside any method, not just __init__ . 
+This means all methods can be modified via overriding and calls to super
 ```
 

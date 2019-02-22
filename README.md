@@ -496,9 +496,15 @@ class OggFile(AudioFile):
 ```
 
 >> ogg = OggFile("myfile.ogg")
+
 >> ogg.play()
+
 playing myfile.ogg as ogg
+
 >> mp3 = MP3File("myfile.mp3")
+
 >> mp3.play()
+
 playing myfile.mp3 as mp3
+
 >> not_an_mp3 = MP3File("myfile.ogg")     

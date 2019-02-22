@@ -8,17 +8,17 @@ An object is a collection of data and associated behaviors.
 ## what does it mean to be object-oriented?
 
 ```
-Oriented simply means directed toward. So object-oriented simply means, 
+Oriented simply means directed toward. So object-oriented simply means,
 "functionally directed toward modeling objects".
 ```
 ## Object-oriented Analysis (OOA)
 
 ```
-It is the process of looking at a problem, system, or 
-task that somebody wants to turn into an application 
+It is the process of looking at a problem, system, or
+task that somebody wants to turn into an application
 and identifying the objects and interactions between those objects.
 Visitors to the website need to be able to (italic represents actions,
-boldrepresents objects):
+bold represents objects):
     • review our history
     • apply for jobs
     • browse, compare, and order our products
@@ -33,14 +33,14 @@ It is the process of converting such requirements into an implementation specifi
 behaviors, and formally specify what objects can activate specific behaviors on
 other objects.
 ```
-## Object-oriented Programming (OOP) 
+## Object-oriented Programming (OOP)
 
 ```
 OOP is the process of converting this perfectly
 defined design into a working program that does exactly what the CEO
 originally requested.
 ```
-## Class 
+## Class
 
 ```
 Classes describe objects
@@ -90,9 +90,9 @@ class MyFirstclass:
 
     p1 = Point() #p1 is instance of class Point
     p2 = Point() #p2 is another instance of class Point()
-    
+
     # <object>.<attribute> = <value>
-    
+
     p1.x = 5
     p1.y = 4
 
@@ -119,9 +119,9 @@ Add reset behavior into the class.So that the origin can be (0,0)
 
 ```
 1. The one difference between methods and normal functions is that all methods
-   have one required argument. 
+   have one required argument.
 2. This argument is conventionally named self.
-3. The self argument to a method is simply a reference to the object that the method 
+3. The self argument to a method is simply a reference to the object that the method
    is being invoked on.
 2. Notice that when we call the p.reset() method, we do not have to pass the self
    argument into it. Python automatically takes care of this for us. It knows we're
@@ -200,23 +200,23 @@ Add reset behavior into the class.So that the origin can be (0,0)
     # store the next available id for all new notes
 
     class Note:
-        '''Represent a note in the notebook.Match aganinst
+        '''Represent a note in the notebook.Match against
         a string in search and store tags for each note.'''
         def __init__(self,memo,tags=''):
-            '''initialization a note with memo and optional 
-            space-separated tags.Automatically set the notes 
+            '''initialization a note with memo and optional
+            space-separated tags.Automatically set the notes
             creation date and a unique id.'''
             self.memo = memo
             self.tags = tags
             self.creation_date = datetime.date.today()
-            global last_id 
+            global last_id
             last_id += 1
             self.id = last_id
 
         def match(self,filter):
-            '''Determine if this note matches the filter 
+            '''Determine if this note matches the filter
             text.Return true if it matches,False otherwise.
-            Search is case sensative and matches both text and tags.'''
+            Search is case sensetive and matches both text and tags.'''
             return filter in self.memo or filter in self.tags
 
     class Notebook:
@@ -231,7 +231,7 @@ Add reset behavior into the class.So that the origin can be (0,0)
             self.notes.append(Note(memo,tags))
 
         def modify_memo(self,note_id, memo):
-            '''Find the note and with the given id and change its 
+            '''Find the note and with the given id and change its
             memo to the given value.'''
             for note in self.notes:
                 if note.id == note_id:
@@ -239,7 +239,7 @@ Add reset behavior into the class.So that the origin can be (0,0)
                     break
 
         def modify_tags(self,note_id,tags):
-            '''Find the note with the given id and change its 
+            '''Find the note with the given id and change its
             tags  to tee given value.'''
             for note in self.notes:
                 if note in self.id == note_id:
@@ -267,7 +267,7 @@ Add reset behavior into the class.So that the origin can be (0,0)
                 "4": self.modify_note,
                 "5": self.quit
             }
-            
+
         def display_menu(self):
             print("""
                 Notebook Menu
@@ -329,7 +329,7 @@ Add reset behavior into the class.So that the origin can be (0,0)
 ```
 1.every class we create uses inheritance.
 2.All Python classes are subclasses of the special class named object .
-3.This class provides very little in terms of data and 
+3.This class provides very little in terms of data and
   behaviors (those behaviors it does provide are all double-underscore methods intended for internal use only)
 4.A superclass, or parent class, is a class that is being inherited from.
 5.A subclass is a class that is inheriting from a superclass.
@@ -381,11 +381,11 @@ as our all_contacts list. We can test the new search functionality as follows:
 ```
 ## Overriding and Super
 
-``
-Overriding is altering or replacing a method of the superclass 
-with a new method (with the same name) in the subclass.
 ```
+Overriding is altering or replacing a method of the superclass
+with a new method (with the same name) in the subclass.
 Let's create a class called Friend and override methods.
+```
 ```
 	class Friend(Contact):
 		def __init__(self,name,email,phone):
@@ -415,7 +415,15 @@ class Friend(Contact):
 		self.phone = phone
 ```
 ```
-A super() call can be made inside any method, not just __init__ . 
+A super() call can be made inside any method, not just __init__ .
 This means all methods can be modified via overriding and calls to super
 ```
+## Multiple inheritance
 
+```
+a subclass that inherits from more than one parent class is
+able to access functionality from both of them.
+The simplest and most useful form of multiple inheritance is called a mixin.
+A mixinis generally a superclass that is not meant to exist on its own,
+but is meant to be inherited by some other class to provide extra functionality.
+```
